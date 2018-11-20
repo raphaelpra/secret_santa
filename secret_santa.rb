@@ -21,8 +21,17 @@ people = people_config['people'].map do |attrs|
 end
 
 santas = people.dup
+
+kids = people_config['kids'].map do |attrs|
+  Person.new(attrs)
+end
+santa_kids1 = kids.dup
+santa_kids2 = kids.dup
+
 people.each do |person|
   person.santa = santas.delete_at(rand(santas.size))
+  person.santa_kid1 = santa_kids1.delete_at(rand(santa_kids1.size))
+  person.santa_kid2 = santa_kids2.delete_at(rand(santa_kids2.size))
 end
 
 Logger.log "Initial Santa assignments:"
@@ -40,7 +49,7 @@ end
 Logger.log "Checking assignments for validity"
 people.each do |person|
    unless person.santa.can_be_santa_of?(person)
-     Logger.log "\n#{person} can't get a gift from #{person.santa}! Let's try to fix that..."
+     Logger.log "\n#{person} can't give a gift to #{person.santa}! Let's try to fix that..."
      swap_candidates = people.select {|p| person.can_swap_santas_with?(p) }
      raise "Failure! No one can swap santas with #{person}" if swap_candidates.empty?
      Logger.log "Any of these can swap santas with #{person}: #{swap_candidates.map(&:to_s)}"
@@ -67,11 +76,15 @@ emailer     = Emailer.new(
 
 template = File.read("letter_template.erb")
 people.each do |person|
-  recipient_name = person.santa.name
-  target_name    = person.name
+  recipient_name = person.name
+  targets_name   = person.santas.map(&:to_s)
   message        = ERB.new(template).result(binding)
   email = Email.new(
-    person.santa.email, "SANTABOT 5000: #{Time.now.year} TARGETS", message
+    person.email, "Hanoukakado 2017", message
   )
   emailer.send(email)
 end
+
+print "Do not forget : " + santas.join(', ')
+print "Do not forget : " + santa_kids1.join(', ')
+print "Do not forget : " + santa_kids2.join(', ')

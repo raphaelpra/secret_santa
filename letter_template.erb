@@ -1,14 +1,31 @@
-GREETINGS <%= recipient_name.upcase %>,
+Bonjour <%= recipient_name %>,
 
-[INITIALIZING CHRISTMAS MERRIMENT ROUTINES...]
+Bienvenue au Hanoukakado 2017 du 26 décembre de la famille Griever/Benhamou/Eichenwald/Prasquier.
 
-SANTABOT 5000 HAS BEEN ACTIVATED. YOU HAVE BEEN CHOSEN AS A SECRET SANTA.
-YOUR TARGET IS AS FOLLOWS:
+Vous avez été sélectionné pour offrir un cadeau aux personnes suivantes :
 
-<%= target_name.upcase %>
+<%= targets_name.join("\n") %>
 
-THIS INFORMATION HAS BEEN KEPT SECRET FROM ALL HUMANS BUT YOU.
+Ce mail est envoyé de manière automatique, et cette information n'est connue que de vous ! Ne perdez pas ce mail sinon une personne ne recevra pas de cadeau de hanouka.
 
-YOU KNOW WHAT TO DO.
+A bientôt.
 
---SANTABOT 5000
+--
+Petit Papa Hanouka
+
+================================================================================
+Hi <%= recipient_name %>,
+
+Welcome to the gift party of the Greiver Benhamou Eichenwald Prasquier's family to be held dec 26th
+
+You have been selected to offer a hanouka gift for the following persons:
+
+<%= targets_name.join("\n") %>
+
+This mail is automatically sent and this information is only yours. Do not loose it or some child will not have his hanouca gift.
+
+See you soon,
+
+--
+Hanoelsanta
+

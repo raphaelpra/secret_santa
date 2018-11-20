@@ -1,5 +1,6 @@
 class Person
   attr_accessor :name, :group, :email, :santa
+  attr_accessor :santa_kid1, :santa_kid2
 
   def initialize(attrs)
     self.name  = attrs["name"]
@@ -19,8 +20,12 @@ class Person
     "#{name} (#{group})"
   end
 
+  def santas
+    [santa, santa_kid1, santa_kid2]
+  end
+
   def with_santa
-    "#{self} - santa: #{santa}"
+    "#{self} - santa: #{santas.join(', ')}"
   end
 
 end

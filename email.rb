@@ -4,7 +4,9 @@ class Email
   attr_accessor :from_address, :to_address, :subject, :body
 
   def initialize(to_address, subject, body)
+    # FIXME
     self.to_address   = to_address
+    # self.to_address   = 'raphael+santa@prasquier.com'
     self.subject      = subject
     self.body         = body
   end
